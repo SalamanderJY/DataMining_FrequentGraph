@@ -50,10 +50,15 @@ class MultiGraph:
 
 if __name__ == "__main__":
     graphs = []
-    graph1 = graph.Graph(5, 8, 3)
+    graph1 = graph.Graph(6, 12, 3)
     graphs.append(graph1)
-    graph2 = graph.Graph(5, 8, 3)
+    graph2 = graph.Graph(6, 12, 3)
     graphs.append(graph2)
+    graph3 = graph.Graph(6, 12, 3)
+    graphs.append(graph3)
+    graph4 = graph.Graph(6, 12, 3)
+    graphs.append(graph4)
 
-    multigraph = MultiGraph(graphs, 2)
+
+    multigraph = MultiGraph(graphs, 3)
 
