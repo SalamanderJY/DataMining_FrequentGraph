@@ -7,6 +7,7 @@
 import numpy as np
 import random
 import itertools
+import operator as op
 
 import networkx as nx
 import networkx.drawing
@@ -29,13 +30,25 @@ class MultiGraph:
 
         for i in range(0, len(self.graphs)):
             for j in range(0, len(self.graphs[i].satisfyDegree)):
+                # Get every induce subgraph
                 induce = self.graphs[i].satisfyDegree[j]
-                for k in range(0, len(self.graphs)):
-                    for l in range(0, len(self.graphs[i].satisfyDegree):
-                        if(cmp)
+                # Judge if it is visited or not
+                if str(induce) in self.isVisited:
+                    continue
+                else:
+                    self.isVisited[str(induce)] = True
+                    count = 0
+                    for k in range(0, len(self.graphs)):
+                        for l in range(0, len(self.graphs[k].satisfyDegree)):
+                            if op.eq(induce, self.graphs[k].satisfyDegree[l]):
+                                count += 1
+                                break
+                    if count >= self.support:
+                        self.frequentGraph.append(induce)
+        print(self.frequentGraph)
+
 
 if __name__ == "__main__":
-
     graphs = []
     graph1 = graph.Graph(5, 8, 3)
     graphs.append(graph1)
@@ -43,3 +56,4 @@ if __name__ == "__main__":
     graphs.append(graph2)
 
     multigraph = MultiGraph(graphs, 2)
+
