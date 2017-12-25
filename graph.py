@@ -8,6 +8,10 @@ import numpy as np
 import random
 import itertools
 
+import networkx as nx
+import networkx.drawing
+import matplotlib.pyplot as plt
+
 
 class Graph:
 
@@ -23,7 +27,7 @@ class Graph:
         self.initialAdjacencyMatrix()
         # find vertex by degree
         self.findVertexByDegree()
-
+        # find all induced subgraph satisfy that they are d-densely.
         self.findInitialInducedGraph()
 
     def initialAdjacencyMatrix(self):
@@ -36,7 +40,7 @@ class Graph:
         # random edge connected
         random.shuffle(initial[0])
 
-        print(initial)
+        # print(initial)
         # initial adjacency matrix
         count = 0
         for i in range(0, self.vertex):
@@ -56,24 +60,44 @@ class Graph:
 
         print(self.satisfyVertex)
 
+    # judge the vertex points is induced sub-graph or not.
+    def isInducedGraph(self, points):
+        induced = {}
+        flag = True
+        for i in range(0, len(points)):
+            if str(points[i][0]) in induced:
+                if self.matrix[points[i][0], points[i][1]] == 1:
+                    induced[str(points[i][0])] += 1
+            else:
+                induced[str(points[i][0])] = 1
+
+            if str(points[i][1]) in induced:
+                if self.matrix[points[i][1], points[i][0]] == 1:
+                    induced[str(points[i][1])] += 1
+            else:
+                induced[str(points[i][1])] = 1
+        for key in induced.keys():
+            if induced[key] < self.degree:
+                flag = False
+                break
+        print(induced)
+        return flag
+
     def findInitialInducedGraph(self):
-        points = []
         for i in range(self.degree + 1, self.vertex + 1):
             degreeCombination = list(itertools.combinations(self.satisfyVertex, i))
             print(degreeCombination)
             # judge if the combination is the real induced sub-graph or not.
-            for i in range(0, len(degreeCombination)):
-                iter = list(itertools.combinations(degreeCombination[i], 2))
+            for j in range(0, len(degreeCombination)):
+                subgraph = list(itertools.combinations(degreeCombination[j], 2))
                 print(iter)
-    # judge the vertex points is induced sub-graph or not.
-    def isInducedGraph(self, points):
+                if self.isInducedGraph(subgraph):
+                    self.satisfyDegree.append(degreeCombination[j])
 
-
-
-
-
-
+        print(self.satisfyDegree)
 
 if __name__ == "__main__":
 
-    graph = Graph(5, 8, 2)
+    graph = Graph(5, 8, 3)
+
+
