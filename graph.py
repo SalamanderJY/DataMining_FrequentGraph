@@ -58,16 +58,22 @@ class Graph:
 
     def findInitialInducedGraph(self):
         points = []
-        degreeCombination = list(itertools.combinations(self.satisfyVertex, self.degree))
-        print(degreeCombination)
-        # judge if the combination is the real induced sub-graph or not.
-        for i in range(0, len(degreeCombination)):
-            iter = list(itertools.combinations(degreeCombination[i], 2))
-            print(iter)
+        for i in range(self.degree + 1, self.vertex + 1):
+            degreeCombination = list(itertools.combinations(self.satisfyVertex, i))
+            print(degreeCombination)
+            # judge if the combination is the real induced sub-graph or not.
+            for i in range(0, len(degreeCombination)):
+                iter = list(itertools.combinations(degreeCombination[i], 2))
+                print(iter)
+    # judge the vertex points is induced sub-graph or not.
+    def isInducedGraph(self, points):
+
+
+
 
 
 
 
 if __name__ == "__main__":
 
-    graph = Graph(5, 8, 3)
+    graph = Graph(5, 8, 2)
