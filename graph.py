@@ -63,6 +63,7 @@ class Graph:
 
     # judge the vertex points is induced sub-graph or not.
     def isInducedGraph(self, points):
+
         induced = {}
         flag = True
         for i in range(0, len(points)):
@@ -70,13 +71,17 @@ class Graph:
                 if self.matrix[points[i][0], points[i][1]] == 1:
                     induced[str(points[i][0])] += 1
             else:
-                induced[str(points[i][0])] = 1
+                if self.matrix[points[i][0], points[i][1]] == 1:
+                    induced[str(points[i][0])] = 1
 
+        for i in range(0, len(points)):
             if str(points[i][1]) in induced:
                 if self.matrix[points[i][1], points[i][0]] == 1:
                     induced[str(points[i][1])] += 1
             else:
-                induced[str(points[i][1])] = 1
+                if self.matrix[points[i][1], points[i][0]] == 1:
+                    induced[str(points[i][1])] = 1
+
         for key in induced.keys():
             if induced[key] < self.degree:
                 flag = False
@@ -91,10 +96,10 @@ class Graph:
             # judge if the combination is the real induced sub-graph or not.
             for j in range(0, len(degreeCombination)):
                 subgraph = list(itertools.combinations(degreeCombination[j], 2))
-                print(iter)
+                print(subgraph)
                 if self.isInducedGraph(subgraph):
                     self.satisfyDegree.append(degreeCombination[j])
-
+        print("Real Induced Graph:")
         print(self.satisfyDegree)
 
     def drawGraph(self):
@@ -120,6 +125,7 @@ class Graph:
 
 
 if __name__ == "__main__":
-    graph = Graph(5, 5, 3)
+    gr = Graph(6, 10, 3)
+    gr.drawGraph()
 
 
