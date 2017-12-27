@@ -4,7 +4,6 @@
 import graph
 import multigraph
 import itertools
-import math
 
 
 class UnionGraph:
@@ -18,7 +17,7 @@ class UnionGraph:
         if self.k >= len(self.frequentGraph):
             self.subsets = self.frequentGraph
         else:
-            cleanFrequentGraph, dirtyFrequentGraph = self.puningSubgraph()
+            cleanFrequentGraph, dirtyFrequentGraph = self.pruningSubgraph()
             if self.k >= len(cleanFrequentGraph):
                 subset = list(itertools.combinations(dirtyFrequentGraph, self.k - len(cleanFrequentGraph)))
             else:
@@ -32,7 +31,7 @@ class UnionGraph:
                 self.subsets = subset[flag]
 
 
-    def puningSubgraph(self):
+    def pruningSubgraph(self):
         containFrequentGraph = []
         for i in range(0, len(self.frequentGraph)):
             pointer = self.frequentGraph[i]

@@ -9,7 +9,6 @@ import random
 import itertools
 
 import networkx as nx
-import networkx.drawing
 import matplotlib.pyplot as plt
 
 
@@ -29,6 +28,8 @@ class Graph:
         self.findVertexByDegree()
         # find all induced subgraph satisfy that they are d-densely.
         self.findInitialInducedGraph()
+        # graph show the initial graph
+        # self.drawGraph()
 
     def initialAdjacencyMatrix(self):
         # total edge of graph
@@ -96,8 +97,29 @@ class Graph:
 
         print(self.satisfyDegree)
 
-if __name__ == "__main__":
+    def drawGraph(self):
+        g = nx.Graph()
+        v = []
+        e = []
+        for i in range(0, self.vertex):
+            v.append(i)
+        for i in range(0, self.vertex):
+            for j in range(0, self.vertex):
+                points = []
+                if self.matrix[i][j] == 1:
+                    points.append(i)
+                    points.append(j)
+                    e.append(tuple(points))
+        print(e)
+        g.add_nodes_from(v)
+        g.add_edges_from(e)
+        nx.draw_circular(g, with_labels=True, font_weight='bold')
+        plt.plot()
+        plt.savefig("graph.png")
+        plt.show()
 
-    graph = Graph(5, 8, 3)
+
+if __name__ == "__main__":
+    graph = Graph(5, 5, 3)
 
 
