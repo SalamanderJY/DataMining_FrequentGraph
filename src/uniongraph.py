@@ -1,15 +1,15 @@
 # Given parameters d and s and an additional integer k, design and implement an algorithm to find k diversified frequent
 # d-densely connected vertex subsets S1, S2 ,..., Sk such that |S| is maximized.
 
-import graph
-import multigraph
 import itertools
+
+from src import graph, multigraph
 
 
 class UnionGraph:
 
-    def __init__(self, graphs, k):
-        self.frequentGraph = graphs.frequentGraph
+    def __init__(self, graphss, k):
+        self.frequentGraph = graphss.frequentGraph
         self.k = k
         self.subsets = []
 
@@ -29,6 +29,7 @@ class UnionGraph:
                         size = self.getUnionGraphSize(subset[i])
                         flag = i
                 self.subsets = subset[flag]
+        print(self.subsets[0])
 
 
     def pruningSubgraph(self):
@@ -82,6 +83,7 @@ if __name__ == "__main__":
 
     multigraph = multigraph.MultiGraph(graphs, 3)
     print(type(multigraph.frequentGraph))
+    union = UnionGraph(multigraph, 5)
 
 
 

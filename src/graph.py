@@ -7,6 +7,7 @@
 import numpy as np
 import random
 import itertools
+import time
 
 import networkx as nx
 import matplotlib.pyplot as plt
@@ -86,19 +87,22 @@ class Graph:
             if induced[key] < self.degree:
                 flag = False
                 break
-        print(induced)
+        # print(induced)
         return flag
 
     def findInitialInducedGraph(self):
         for i in range(self.degree + 1, self.vertex + 1):
-            degreeCombination = list(itertools.combinations(self.satisfyVertex, i))
-            print(degreeCombination)
-            # judge if the combination is the real induced sub-graph or not.
-            for j in range(0, len(degreeCombination)):
-                subgraph = list(itertools.combinations(degreeCombination[j], 2))
-                print(subgraph)
-                if self.isInducedGraph(subgraph):
-                    self.satisfyDegree.append(degreeCombination[j])
+            if len(self.satisfyVertex) < i:
+                break
+            else:
+                degreeCombination = list(itertools.combinations(self.satisfyVertex, i))
+                # print(degreeCombination)
+                # judge if the combination is the real induced sub-graph or not.
+                for j in range(0, len(degreeCombination)):
+                    subgraph = list(itertools.combinations(degreeCombination[j], 2))
+                    # print(subgraph)
+                    if self.isInducedGraph(subgraph):
+                        self.satisfyDegree.append(degreeCombination[j])
         print("Real Induced Graph:")
         print(self.satisfyDegree)
 
@@ -115,7 +119,7 @@ class Graph:
                     points.append(i)
                     points.append(j)
                     e.append(tuple(points))
-        print(e)
+        #print(e)
         g.add_nodes_from(v)
         g.add_edges_from(e)
         nx.draw_circular(g, with_labels=True, font_weight='bold')
@@ -125,7 +129,13 @@ class Graph:
 
 
 if __name__ == "__main__":
-    gr = Graph(6, 10, 3)
+
+    #starttime = time.time()
+    for i in range(0, 1):
+        gr = Graph(18, 20, 5)
+    #endtime = time.time()
+    #print(endtime - starttime)
+
     gr.drawGraph()
 
 

@@ -4,16 +4,10 @@
 # A subset of vertices S belong to V is said to be d-densely connected in graph Gi
 # if every vertex in the induced sub-graph G[S] has degree at least d, where d > 0.
 # Vertex subset S is said to be frequent if it is d-densely connected in at least s graphs in G1 ,G2 ,...,Gn.
-import numpy as np
-import random
-import itertools
 import operator as op
+import time
 
-import networkx as nx
-import networkx.drawing
-import matplotlib.pyplot as plt
-
-import graph
+from src import graph
 
 
 class MultiGraph:
@@ -45,20 +39,19 @@ class MultiGraph:
                                 break
                     if count >= self.support:
                         self.frequentGraph.append(induce)
+        print("Frequent Graph:")
         print(self.frequentGraph)
 
 
 if __name__ == "__main__":
+
+    starttime = time.time()
     graphs = []
-    graph1 = graph.Graph(6, 12, 3)
-    graphs.append(graph1)
-    graph2 = graph.Graph(6, 12, 3)
-    graphs.append(graph2)
-    graph3 = graph.Graph(6, 12, 3)
-    graphs.append(graph3)
-    graph4 = graph.Graph(6, 12, 3)
-    graphs.append(graph4)
+    for i in range(0, 15):
+        graph_single = graph.Graph(12, 50, 3)
+        graphs.append(graph_single)
 
+    multigraph = MultiGraph(graphs, 9)
 
-    multigraph = MultiGraph(graphs, 3)
-
+    endtime = time.time()
+    print(endtime - starttime)

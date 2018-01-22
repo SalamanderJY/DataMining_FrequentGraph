@@ -1,8 +1,7 @@
-import networkx as nx
 import matplotlib.pyplot as plt
+import networkx as nx
 
-import graph
-import multigraph
+from src import graph, multigraph
 
 
 class DrawGraph:
