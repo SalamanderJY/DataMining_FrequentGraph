@@ -7,7 +7,6 @@
 import numpy as np
 import random
 import itertools
-import time
 
 import networkx as nx
 import matplotlib.pyplot as plt
@@ -124,7 +123,7 @@ class Graph:
         g.add_edges_from(e)
         nx.draw_circular(g, with_labels=True, font_weight='bold')
         plt.plot()
-        plt.savefig("graph.png")
+        plt.savefig("dense_graph.png")
         plt.show()
 
 
@@ -136,6 +135,6 @@ if __name__ == "__main__":
     #endtime = time.time()
     #print(endtime - starttime)
 
-    gr.drawGraph()
+    # gr.drawGraph()
 
 

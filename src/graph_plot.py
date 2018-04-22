@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import networkx as nx
 
-from src import graph, multigraph
+from src import graph_generator, multi_graph
 
 
 class DrawGraph:
@@ -36,16 +36,16 @@ class DrawGraph:
 
 if __name__ == "__main__":
     graphs = []
-    graph1 = graph.Graph(6, 10, 3)
+    graph1 = graph_generator.Graph(6, 10, 3)
     graphs.append(graph1)
-    graph2 = graph.Graph(6, 10, 3)
+    graph2 = graph_generator.Graph(6, 10, 3)
     graphs.append(graph2)
-    graph3 = graph.Graph(6, 10, 3)
+    graph3 = graph_generator.Graph(6, 10, 3)
     graphs.append(graph3)
-    graph4 = graph.Graph(6, 10, 3)
+    graph4 = graph_generator.Graph(6, 10, 3)
     graphs.append(graph4)
 
     draw = DrawGraph()
     draw.drawGraphs(graphs)
 
-    multigraph = multigraph.MultiGraph(graphs, 2)
+    multigraph = multi_graph.MultiGraph(graphs, 2)

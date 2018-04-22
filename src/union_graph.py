@@ -3,7 +3,7 @@
 
 import itertools
 
-from src import graph, multigraph
+from src import graph_generator, multi_graph
 
 
 class UnionGraph:
@@ -72,16 +72,16 @@ class UnionGraph:
 
 if __name__ == "__main__":
     graphs = []
-    graph1 = graph.Graph(6, 12, 3)
+    graph1 = graph_generator.Graph(6, 12, 3)
     graphs.append(graph1)
-    graph2 = graph.Graph(6, 12, 3)
+    graph2 = graph_generator.Graph(6, 12, 3)
     graphs.append(graph2)
-    graph3 = graph.Graph(6, 12, 3)
+    graph3 = graph_generator.Graph(6, 12, 3)
     graphs.append(graph3)
-    graph4 = graph.Graph(6, 12, 3)
+    graph4 = graph_generator.Graph(6, 12, 3)
     graphs.append(graph4)
 
-    multigraph = multigraph.MultiGraph(graphs, 3)
+    multigraph = multi_graph.MultiGraph(graphs, 3)
     print(type(multigraph.frequentGraph))
     union = UnionGraph(multigraph, 5)
 

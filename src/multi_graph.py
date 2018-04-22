@@ -7,7 +7,7 @@
 import operator as op
 import time
 
-from src import graph
+from src import graph_generator
 
 
 class MultiGraph:
@@ -48,7 +48,7 @@ if __name__ == "__main__":
     starttime = time.time()
     graphs = []
     for i in range(0, 15):
-        graph_single = graph.Graph(12, 50, 3)
+        graph_single = graph_generator.Graph(12, 50, 3)
         graphs.append(graph_single)
 
     multigraph = MultiGraph(graphs, 9)
